@@ -1,7 +1,8 @@
 package Lec36;
 
-public class Diameter_of_Binary_Tree {
 
+
+public class Balanced_Binary_Tree {
 	public class TreeNode {
 		int val;
 		TreeNode left;
@@ -22,15 +23,15 @@ public class Diameter_of_Binary_Tree {
 	}
 
 	class Solution {
-		public int diameterOfBinaryTree(TreeNode root) {
+		public boolean isBalanced(TreeNode root) {
 			if (root == null) {
-				return 0;
+				return true;
 			}
 
-			int ld = diameterOfBinaryTree(root.left);
-			int rd = diameterOfBinaryTree(root.right);
-			int sd = ht(root.left) + ht(root.right) + 2;
-			return Math.max(ld, Math.max(rd, sd));
+			boolean l = isBalanced(root.left);
+			boolean r = isBalanced(root.right);
+			boolean s = Math.abs(ht(root.left) - ht(root.right)) <= 1;
+			return l && r && s;
 
 		}
 
@@ -44,5 +45,4 @@ public class Diameter_of_Binary_Tree {
 			return Math.max(lh, rh) + 1;
 		}
 	}
-
 }
